@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 /**
- * bubble_sort - alforithm with bubble sorting method
- * @array:
- * @size:
+ * bubble_sort - alforithm with bubble sorting method.
+ * @array: input pointer to array to be sorted.
+ * @size: array size.
  */
 void bubble_sort(int *array, size_t size)
 {
