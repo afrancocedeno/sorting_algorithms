@@ -17,11 +17,11 @@ void swap_nodes(listint_t **node_a, listint_t **node_b, listint_t **list)
 	}
 
 	/* if second node is the last node of the list */
-	else if ((*node_b)->next == NULL && (*node_a)->prev !=NULL)
+	else if ((*node_b)->next == NULL && (*node_a)->prev != NULL)
 		(*node_a)->prev->next = *node_b;
 
 	/* if first node is the first node of the list*/
-	else if ((*node_a)->prev == NULL && (*node_b)->next !=NULL)
+	else if ((*node_a)->prev == NULL && (*node_b)->next != NULL)
 	{
 		(*node_b)->next->prev = *node_a;
 		*list = *node_b;
