@@ -43,6 +43,9 @@ void insertion_sort_list(listint_t **list)
 	/* (*(*list)).member this algo will manipulate the list */
 	listint_t *ref_ptr, *current_ptr, *next_ptr; /* ptrs (*) must be modifiable */
 
+	/* edge cases */
+	if (list == NULL || *list == NULL)
+		return;
 	/* compatible pointer type initialization */
 	ref_ptr = *list;
 	/* traverse the list with the ref ptr */
