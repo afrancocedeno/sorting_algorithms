@@ -49,20 +49,25 @@ void insertion_sort_list(listint_t **list)
 	/* compatible pointer type initialization */
 	ref_ptr = *list;
 	/* traverse the list with the ref ptr */
-	while (ref_ptr->next)
+	if ((*ref_ptr).next != NULL)
 	{
-		current_ptr = ref_ptr;
-		next_ptr = (*ref_ptr).next;
-		if (ref_ptr->n > next_ptr->n)
+		while (ref_ptr->next)
 		{
-			/* swap the nodes */
-			swap_nodes(&current_ptr, &next_ptr, list);
-			print_list(*list);
-			/* reset the loop */
-			ref_ptr = *list;
+			current_ptr = ref_ptr;
+			next_ptr = (*ref_ptr).next;
+			if (ref_ptr->n > next_ptr->n)
+			{
+				/* swap the nodes */
+				swap_nodes(&current_ptr, &next_ptr, list);
+				print_list(*list);
+				/* reset the loop */
+				ref_ptr = *list;
+			}
+			/* otherwise, next node*/
+			else
+				ref_ptr = (*ref_ptr).next;
 		}
-		/* otherwise, next node*/
-		else
-			ref_ptr = (*ref_ptr).next;
 	}
+	else
+		return;
 }
