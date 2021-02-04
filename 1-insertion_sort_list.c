@@ -9,25 +9,32 @@
  */
 void swap_nodes(listint_t **node_a, listint_t **node_b, listint_t **list)
 {
-	/* if list only has two nodes */
+	/* if nodes are not the firs/end of the list*/
 	if ((*node_b)->next != NULL && (*node_a)->prev != NULL)
 	{
 		(*node_a)->prev->next = *node_b;
 		(*node_b)->next->prev = *node_a;
 	}
+
 	/* if second node is the last node of the list */
-	else if ((*node_b)->next == NULL)
+	else if ((*node_b)->next == NULL && (*node_a)->prev !=NULL)
 		(*node_a)->prev->next = *node_b;
+
 	/* if first node is the first node of the list*/
-	else
+	else if ((*node_a)->prev == NULL && (*node_b)->next !=NULL)
 	{
 		(*node_b)->next->prev = *node_a;
 		*list = *node_b;
 	}
+	/* last condition for two nodes */
+	else if ((*node_a)->prev == NULL && (*node_b)->next == NULL)
+		*list = *node_b;
+
 	/* normal scenario linking */
 	/*ascending order linking */
 	(*node_a)->next = (*node_b)->next;
 	(*node_b)->next = *node_a;
+
 	/* descending order linking */
 	(*node_b)->prev = (*node_a)->prev;
 	(*node_a)->prev = *node_b;
@@ -44,8 +51,7 @@ void insertion_sort_list(listint_t **list)
 	listint_t *ref_ptr, *current_ptr, *next_ptr; /* ptrs (*) must be modifiable */
 
 	/* edge cases */
-	if (list == NULL || *list == NULL || (*(*list)).next == NULL)
-		return;
+
 	/* compatible pointer type initialization */
 	ref_ptr = *list;
 	/* traverse the list with the ref ptr */
