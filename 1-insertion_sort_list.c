@@ -44,30 +44,25 @@ void insertion_sort_list(listint_t **list)
 	listint_t *ref_ptr, *current_ptr, *next_ptr; /* ptrs (*) must be modifiable */
 
 	/* edge cases */
-	if (list == NULL || *list == NULL)
+	if (list == NULL || *list == NULL || (*(*list)).next == NULL)
 		return;
 	/* compatible pointer type initialization */
 	ref_ptr = *list;
 	/* traverse the list with the ref ptr */
-	if ((*ref_ptr).next != NULL)
+	while (ref_ptr->next)
 	{
-		while (ref_ptr->next)
+		current_ptr = ref_ptr;
+		next_ptr = (*ref_ptr).next;
+		if (ref_ptr->n > next_ptr->n)
 		{
-			current_ptr = ref_ptr;
-			next_ptr = (*ref_ptr).next;
-			if (ref_ptr->n > next_ptr->n)
-			{
-				/* swap the nodes */
-				swap_nodes(&current_ptr, &next_ptr, list);
-				print_list(*list);
-				/* reset the loop */
-				ref_ptr = *list;
-			}
-			/* otherwise, next node*/
-			else
-				ref_ptr = (*ref_ptr).next;
+			/* swap the nodes */
+			swap_nodes(&current_ptr, &next_ptr, list);
+			print_list(*list);
+			/* reset the loop */
+			ref_ptr = *list;
 		}
+		/* otherwise, next node*/
+		else
+			ref_ptr = (*ref_ptr).next;
 	}
-	else
-		return;
 }
